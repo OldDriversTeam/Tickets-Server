@@ -36,12 +36,12 @@
     </filter-mapping>
     
     <filter>
-    <filter-name>testFilter</filter-name>
-    <filter-class>com.olddrivers.tickets.crossorigin.testFilter</filter-class>
+    <filter-name>CROSFilter</filter-name>
+    <filter-class>com.olddrivers.tickets.web.filter.CROSFilter</filter-class>
     </filter>
     
     <filter-mapping>
-    	<filter-name>testFilter</filter-name>
+    	<filter-name>CROSFilter</filter-name>
     	<url-pattern>/*</url-pattern>
     </filter-mapping>
     

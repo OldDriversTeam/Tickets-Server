@@ -21,9 +21,18 @@
 	</mvc:annotation-driven>
 
 	<context:component-scan base-package="com.olddrivers.tickets" />
+<!-- 
+	<bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/ticketsDB?createDatabaseIfNotExist=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="username" value="root" />
+		<property name="password" value="123456" />
+	</bean> -->
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<!-- <property name="dataSource" ref="dataSource"/> -->
 	</bean>
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -39,6 +48,11 @@
 	<mvc:resources mapping="/images/**" location="/images/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="Messages" />
+	</bean>
 
 	<!-- SpringResourceTemplateResolver automatically integrates with Spring's 
 		own -->

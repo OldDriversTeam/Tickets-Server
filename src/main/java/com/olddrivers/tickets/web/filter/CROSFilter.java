@@ -1,4 +1,4 @@
-package com.olddrivers.tickets.crossorigin;
+package com.olddrivers.tickets.web.filter;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
-public class testFilter implements Filter {
+public class CROSFilter implements Filter {
 
 	public void destroy() {
 		// TODO Auto-generated method stub
