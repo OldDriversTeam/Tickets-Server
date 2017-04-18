@@ -18,9 +18,9 @@
 
 ## 部署
 
-	```sh
-	$ mvn clean compile tomcat7:run
-	```
+```sh
+$ mvn clean compile tomcat7:run
+```
 
 ## 访问
 
@@ -29,15 +29,15 @@
 - 使用curl工具
 	- [官方下载](http://www.paehl.com/open_source/?CURL_7.53.1)
 	- [官方使用教程](https://curl.haxx.se/docs/manual.html)
-*TODO*
-更多API见[API-Description]()
 
-*TODO*
-## 单元测试
 
-	```sh
-	$ mvn test
-	```
+更多API见[API-Description]()*TODO*
+
+## 单元测试 *TODO*
+
+```sh
+$ mvn test
+```
 
 ### 许可
 
