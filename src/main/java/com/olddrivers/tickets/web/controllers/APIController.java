@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.olddrivers.tickets.business.entities.User;
@@ -28,19 +29,19 @@ public class APIController {
 	private MovieService movieService;
 	
 	
-	@RequestMapping("/users/{id}")
+	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	User FindOne(@PathVariable("id") String id) {
 		return userService.findOne(id);
 	}
 	
-	@RequestMapping("/users/findByName/{name}")
+	@RequestMapping(value = "/users/findByName/{name}", method = RequestMethod.GET)
 	@ResponseBody
 	User FindByName(@PathVariable("name") String name) {
 		return userService.findByName(name);
 	}
 
-	@RequestMapping("/users/login")
+	@RequestMapping(value = "/users/login", method = RequestMethod.POST)
 	@ResponseBody
 	Message Login(@RequestBody LoginForm loginForm) {
 		
@@ -49,7 +50,7 @@ public class APIController {
 		return userService.Login(loginForm);
 	}
 	
-	@RequestMapping("/users/add")
+	@RequestMapping(value = "/users/add", method = RequestMethod.POST)
 	@ResponseBody
 	Message Add(@RequestBody RegistForm registForm) {
 		
@@ -62,13 +63,13 @@ public class APIController {
 		return m;
 	}
 
-	@RequestMapping("/users/update")
+	@RequestMapping(value = "/users/update", method = RequestMethod.POST)
 	@ResponseBody
 	Message Login(@RequestBody User user) {
 		return userService.Update(user);
 	}
 	
-	@RequestMapping("/movies")
+	@RequestMapping(value = "/movies", method = RequestMethod.GET)
 	@ResponseBody
 	List<Movie> FindAllMovies() {
 		return movieService.findAll();
