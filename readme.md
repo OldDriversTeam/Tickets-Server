@@ -1,5 +1,5 @@
 
-# 电影订票系统后端
+# 电影订票系统后端[![Build Status](https://travis-ci.org/OldDriversTeam/Tickets-Server.svg?branch=master)](https://travis-ci.org/OldDriversTeam/Tickets-Server)
 
 采用Spring MVC框架 （ Spring4 + ThymeLeaf + Hibernate ）
 
