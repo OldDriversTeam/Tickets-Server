@@ -3,51 +3,62 @@ package com.olddrivers.tickets.business.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity 
 @Table(name = "movie")
 public class Movie implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-	private Long id;
-	
-	@Column(name = "name")
+
+	private String id;
+
 	private String name;
 	
-	@Column(name = "cover")
-	private String cover;
+	private String release_date;
 	
-	@Column(name = "date")
-	private String date;
+	private String storyLine;
 	
-	@Column(name = "description")
-	private String description;
+	private String detail;
 	
-	@Column(name = "score")
-	private Float score;
+	private String poster;
+	
+	private Float avgScore;
+	
+	private Boolean isshow;
+	
+	private MovieType movieType;
 	
 	public Movie() {
 		super();
 		
 	}
 	
-	public long getId() {
+	
+	@Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name="system-uuid", strategy="org.hibernate.id.UUIDGenerator")
+	@Column(name = "movie_id")
+	public String getId() {
 		return this.id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
+	
+	@Column(name = "moive_name")
 	public String getName() {
 		return this.name;
 	}
@@ -55,42 +66,72 @@ public class Movie implements Serializable {
 		this.name = name;
 	}
 
-	public String getCover() {
-		return this.cover;
-	}
-	public void setCover(String cover) {
-		this.cover = cover;
-	}
-	public String getDate() {
-		return this.date;
-	}
-	public void setDate(String date) {
-		this.date = date;
-	}
-	public String getDescription() {
-		return this.description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public Float getScore() {
-		return this.score;
-	}
-	public void setScore(Float score) {
-		this.score = score;
+	@Column(name = "movie_release_date")
+	public String getRelease_date() {
+		return release_date;
 	}
 	
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("{")
-		.append("\"id\":").append(id).append(",")
-		.append("\"name\":\"").append(name).append("\",")
-		.append("\"cover\":\"").append(cover).append("\",")
-		.append("\"date\":\"").append(date).append("\",")
-		.append("\"description\":\"").append(description).append("\",")
-		.append("\"score\":\"").append(score).append("\"")
-		.append("}");
-		return builder.toString();	
+	public void setRelease_date(String release_date) {
+		this.release_date = release_date;
 	}
+	@Column(name = "movie_isshow")
+	public Boolean getIsshow() {
+		return isshow;
+	}
+
+	public void setIsshow(Boolean isshow) {
+		this.isshow = isshow;
+	}
+
+	
+	@Column(name = "movie_storyline")
+	public String getStoryLine() {
+		return storyLine;
+	}
+	
+	
+	public void setStoryLine(String storyLine) {
+		this.storyLine = storyLine;
+	}
+	
+	@Column(name = "movie_detail")
+	public String getDetail() {
+		return detail;
+	}
+	
+	
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+	
+	@Column(name = "movie_poster")
+	public String getPoster() {
+		return poster;
+	}
+	
+	@Column(name = "movie_avgScore")
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+	
+	
+	public Float getAvgScore() {
+		return avgScore;
+	}
+	
+	
+	public void setAvgScore(Float avgScore) {
+		this.avgScore = avgScore;
+	}
+
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="movie_type_id")
+	public MovieType getMovieType() {
+		return movieType;
+	}
+
+	public void setMovieType(MovieType movieType) {
+		this.movieType = movieType;
+	}
+
 }

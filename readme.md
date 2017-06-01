@@ -1,13 +1,13 @@
 
 # 电影订票系统后端[![Build Status](https://travis-ci.org/OldDriversTeam/Tickets-Server.svg?branch=master)](https://travis-ci.org/OldDriversTeam/Tickets-Server)
 
-采用Spring MVC框架 （ Spring4 + ThymeLeaf + Hibernate ）
+采用Spring MVC框架 （ Spring4 + Hibernate + MySQL）
 
 ## 安装
 
 - MySQL
 
-[个人安装使用教程](http://www.hshhuan.xyz/topics/mysql/)
+[个人安装使用教程](http://www.hshhuan.xyz/archives/win10-install-mysql-5-7-zip/)
 
 设置`root`用户密码为`123456`
 

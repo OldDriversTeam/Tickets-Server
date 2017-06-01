@@ -20,35 +20,21 @@ public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name="system-uuid", strategy="org.hibernate.id.UUIDGenerator")
-	@Column(name = "id")
 	private String id;
 	
-	@Column(name = "name")
 	private String name;
-	
-	@Column(name = "password")
+
 	private String password;
 	
-	@Column(name = "gender")
 	private String gender;
 	
-	@Column(name = "age")
 	private Integer age;
 	
-	@Column(name = "phone", unique = true)
 	private String phone;
 	
-	@Column(name = "email")
 	private String email;
 	
-	//private String avatar;
-	
-	//@Transient
-	// Gender gender;
+	private String avatar;
 	
 	public User() {
 		super();
@@ -64,6 +50,11 @@ public class User implements Serializable {
 		
 	}
 	
+	@Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name="system-uuid", strategy="org.hibernate.id.UUIDGenerator")
+	@Column(name = "user_id")
 	public String getId() {
 		return this.id;
 	}
@@ -71,24 +62,31 @@ public class User implements Serializable {
 		this.id = id;
 	}
 	
+	@Column(name = "user_name")
 	public String getName() {
 		return this.name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
+	}	
+	
+	@Column(name = "user_password")
 	public String getPassword() {
 		return this.password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@Column(name = "user_gender")
 	public String getGender() {
 		return this.gender;
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	
+	@Column(name = "user_age")
 	public Integer getAge() {
 		return this.age;
 	}
@@ -96,12 +94,15 @@ public class User implements Serializable {
 		this.age = age;
 	}
 	
+	@Column(name = "user_phone", unique = true)
 	public String getPhone() {
 		return this.phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	@Column(name = "user_email")
 	public String getEmail() {
 		return this.email;
 	}
@@ -109,19 +110,30 @@ public class User implements Serializable {
 		this.email = email;
 	}
 	
-	@Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("{")
-        .append("\"id\":").append(id).append(",")
-        .append("\"name\":\"").append(name).append("\",")
-        .append("\"password\":\"").append(password).append("\",")
-        .append("\"gender\":\"").append(gender).append("\",")
-        .append("\"age\":").append(age).append(",")
-        .append("\"phone\":\"").append(phone).append("\",")
-        .append("\"email\":\"").append(email).append("\"")
-        .append("}");
-        return builder.toString();
-    }
+	@Column(name = "user_avatar")
+	public String getAvatar() {
+		return avatar;
+	}
+	
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	
+//	@Override
+//    public String toString() {
+//        final StringBuilder builder = new StringBuilder();
+//        builder.append("{")
+//        .append("\"id\":").append(id).append(",")
+//        .append("\"name\":\"").append(name).append("\",")
+//        .append("\"password\":\"").append(password).append("\",")
+//        .append("\"gender\":\"").append(gender).append("\",")
+//        .append("\"age\":").append(age).append(",")
+//        .append("\"phone\":\"").append(phone).append("\",")
+//        .append("\"email\":\"").append(email).append("\"")
+//        .append("}");
+//        return builder.toString();
+//    }
+
+
 	
 }
