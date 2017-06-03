@@ -24,6 +24,10 @@ public class Showing implements Serializable {
 	
 	private String date;
 	
+	private String time;
+	
+	private Float price;
+	
 	private Room room;
 	
 	private Movie movie;
@@ -60,6 +64,24 @@ public class Showing implements Serializable {
 	public void setRoom(Room room) {
 		this.room = room;
 	}
+	
+	@Column(name="showing_time")
+	public String getTime() {
+		return time;
+	}
+	
+	public void setTime(String time) {
+		this.time = time;
+	}
+	
+	@Column(name="showing_price")
+	public Float getPrice() {
+		return price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
+	}
 
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="movie_id")
@@ -70,4 +92,5 @@ public class Showing implements Serializable {
 	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
+
 }

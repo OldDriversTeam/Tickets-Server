@@ -109,12 +109,12 @@ public class Movie implements Serializable {
 		return poster;
 	}
 	
-	@Column(name = "movie_avgScore")
 	public void setPoster(String poster) {
 		this.poster = poster;
 	}
 	
 	
+	@Column(name = "movie_avgScore")
 	public Float getAvgScore() {
 		return avgScore;
 	}

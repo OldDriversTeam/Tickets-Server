@@ -31,7 +31,7 @@ $ mvn clean compile tomcat7:run
 	- [官方使用教程](https://curl.haxx.se/docs/manual.html)
 
 
-更多API见[API-Description]()*TODO*
+更多API见[API-Description](https://github.com/OldDriversTeam/Tickets-Documentation/blob/master/API-description.mdown)*TODO*
 
 ## 单元测试 *TODO*
 

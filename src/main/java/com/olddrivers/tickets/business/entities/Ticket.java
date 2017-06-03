@@ -22,11 +22,11 @@ public class Ticket implements Serializable {
 	
 	private String id;
 	
-	private Integer seat;
+	private Integer seatColNum;
 	
-	private Float price;
+	private Integer seatRowNum;
 	
-	private Boolean issold;
+	private Boolean isSold;
 	
 	private Showing showing;
 	
@@ -43,32 +43,32 @@ public class Ticket implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	@Column(name="ticket_seat")
-	public Integer getSeat() {
-		return seat;
+	
+	@Column(name="ticket_seatCol")
+	public Integer getSeatColNum() {
+		return seatColNum;
+	}
+	
+	public void setseatColNum(Integer seatColNum) {
+		this.seatColNum = seatColNum;
+	}
+	
+	@Column(name="ticket_seatRow")
+	public Integer getseatRowNum() {
+		return seatRowNum;
+	}
+	
+	public void setseatRowNum(Integer seatRowNum) {
+		this.seatRowNum = seatRowNum;
 	}
 
-	public void setSeat(Integer seat) {
-		this.seat = seat;
+	@Column(name="ticket_isSold")
+	public Boolean getIsSold() {
+		return isSold;
 	}
 
-	@Column(name="ticket_price")
-	public Float getPrice() {
-		return price;
-	}
-
-	public void setPrice(Float price) {
-		this.price = price;
-	}
-
-	@Column(name="ticket_issold")
-	public Boolean getIssold() {
-		return issold;
-	}
-
-	public void setIssold(Boolean issold) {
-		this.issold = issold;
+	public void setIsSold(Boolean isSold) {
+		this.isSold = isSold;
 	}
 
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
