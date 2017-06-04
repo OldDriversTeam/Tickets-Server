@@ -10,7 +10,6 @@ import com.olddrivers.tickets.business.entities.repositories.CinemaRepository;
 @Service
 @Transactional
 public class CinemaService {
-
 	@Autowired
 	private CinemaRepository cinemaRepo;
 	
@@ -19,13 +18,7 @@ public class CinemaService {
 	}
 	
 	public Cinema findOne(final String id) {
-		
-		System.out.println("----------before-------------");
-		Cinema c1 = cinemaRepo.findOne(id);
-		System.out.println("----------after----------");
-		System.out.println(c1.getAddress());
-		System.out.println(c1.getCity().getName());
-		return c1;
+		return cinemaRepo.findOne(id);
 	}
-	
+
 }

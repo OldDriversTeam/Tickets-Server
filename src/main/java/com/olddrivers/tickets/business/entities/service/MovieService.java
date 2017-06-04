@@ -1,6 +1,6 @@
 package com.olddrivers.tickets.business.entities.service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +15,17 @@ import com.olddrivers.tickets.business.entities.repositories.MovieRepository;
 public class MovieService {
 
 	@Autowired
-	private MovieRepository movieRepository;
+	private MovieRepository movieRepo;
 	
 	public MovieService() {
 		super();
 	}
 	
-	public List<Movie> findAll() {
-		return (ArrayList<Movie>) movieRepository.findAll();
+	public Movie findOne(String id) {
+		return movieRepo.findOne(id);
+	}
+	
+	public List<Object[]> findMovieOnShow(Boolean isShow) {
+		return movieRepo.findMovieOnShow(isShow);
 	}
 }

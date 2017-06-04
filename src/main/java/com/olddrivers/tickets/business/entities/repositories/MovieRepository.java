@@ -1,8 +1,15 @@
 package com.olddrivers.tickets.business.entities.repositories;
 
 import com.olddrivers.tickets.business.entities.Movie;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.*;
 
-public interface MovieRepository extends CrudRepository<Movie, Long> {
+public interface MovieRepository extends CrudRepository<Movie, String> {
+	
+	@Query("select m.id, m.name, m.poster from Movie m where m.isShow = ?1")
+	List<Object[]> findMovieOnShow(Boolean isShow);
 	
 }

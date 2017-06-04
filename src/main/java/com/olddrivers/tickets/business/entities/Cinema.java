@@ -66,7 +66,7 @@ public class Cinema implements Serializable {
 		this.phone = phone;
 	}
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="city_id")
 	public City getCity() {
 		return city;

@@ -25,7 +25,7 @@ public class Movie implements Serializable {
 
 	private String name;
 	
-	private String release_date;
+	private String releaseDate;
 	
 	private String storyLine;
 	
@@ -35,7 +35,7 @@ public class Movie implements Serializable {
 	
 	private Float avgScore;
 	
-	private Boolean isshow;
+	private Boolean isShow;
 	
 	private MovieType movieType;
 	
@@ -66,21 +66,21 @@ public class Movie implements Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "movie_release_date")
-	public String getRelease_date() {
-		return release_date;
+	@Column(name = "movie_releaseDate")
+	public String getReleaseDate() {
+		return releaseDate;
 	}
 	
-	public void setRelease_date(String release_date) {
-		this.release_date = release_date;
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
 	}
-	@Column(name = "movie_isshow")
-	public Boolean getIsshow() {
-		return isshow;
+	@Column(name = "movie_isShow")
+	public Boolean getIsShow() {
+		return isShow;
 	}
 
-	public void setIsshow(Boolean isshow) {
-		this.isshow = isshow;
+	public void setIsShow(Boolean isShow) {
+		this.isShow = isShow;
 	}
 
 	
@@ -124,7 +124,7 @@ public class Movie implements Serializable {
 		this.avgScore = avgScore;
 	}
 
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="movie_type_id")
 	public MovieType getMovieType() {
 		return movieType;

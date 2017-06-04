@@ -1,6 +1,5 @@
 package com.olddrivers.tickets.web.controllers;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,31 +10,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.olddrivers.tickets.business.entities.User;
-import com.olddrivers.tickets.business.entities.Movie;
-import com.olddrivers.tickets.business.entities.service.MovieService;
 import com.olddrivers.tickets.business.entities.service.UserService;
 import com.olddrivers.tickets.util.LoginForm;
 import com.olddrivers.tickets.util.Message;
 import com.olddrivers.tickets.util.RegistForm;
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private MovieService movieService;
-	
-	
-	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	User FindOne(@PathVariable("id") String id) {
 		return userService.findOne(id);
 	}
 	
-	@RequestMapping(value = "/users/findByName/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
 	@ResponseBody
 	User FindByName(@PathVariable("name") String name) {
 		return userService.findByName(name);
@@ -50,15 +43,13 @@ public class UserController {
 		return userService.Login(loginForm);
 	}
 	
-	@RequestMapping(value = "/users/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/register", method = RequestMethod.POST)
 	@ResponseBody
 	Message Add(@RequestBody RegistForm registForm) {
 		
 		System.out.println(registForm);
 		
 		Message m = userService.Add(new User(registForm));
-		
-		System.out.println(m.toString());
 		
 		return m;
 	}
@@ -69,9 +60,4 @@ public class UserController {
 		return userService.Update(user);
 	}
 	
-	@RequestMapping(value = "/movies", method = RequestMethod.GET)
-	@ResponseBody
-	List<Movie> FindAllMovies() {
-		return movieService.findAll();
-	}
 }
