@@ -49,9 +49,22 @@ public class ShowingController {
 	public AbstractResponse getShowingsByMovieId(@PathVariable("movieId") String movieId) {
 		Map<String, List<String>> dataMap = showingService.getShowingsByMovieId(movieId);
 		List<LinkedHashMap<String, Object>> dataList = new LinkedList<LinkedHashMap<String, Object>>();
-		for (int i = 0; i < dataMap.size(); i++) {
-			Map<String, Object> temp = new LinkedHashMap<String, Object>();
-		}
-		return new ObjectListResponse(dataList, "");
+		for (Map.Entry<String, List<String>> entry : dataMap.entrySet()) {  
+			LinkedHashMap<String, Object> temp = new LinkedHashMap<String, Object>();
+		    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());  
+			temp.put("date",entry.getKey().toString());
+			temp.put("cinemaIdList", entry.getValue());
+			dataList.add(temp);
+		} 
+		return new ObjectListResponse(dataList, "showingList");
+	}
+	@RequestMapping(value = "/cinema/{cinemaId}/date/{date}/movie/{movieId}", method = RequestMethod.GET)
+	@ResponseBody
+	public AbstractResponse findShowingIdListByCinemaIdAndDateAndMovieId(
+			@PathVariable("cinemaId") String cinemaId,
+			@PathVariable("date") String date,
+			@PathVariable("movieId") String movieId) {
+		
+		return new ObjectListResponse(showingService.findShowingIdListByCinemaIdAndDateAndMovieId(cinemaId, date, movieId), "showingIdList");
 	}
 }

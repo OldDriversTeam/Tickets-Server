@@ -11,4 +11,7 @@ public interface ShowingRepository extends CrudRepository<Showing, String> {
 
 	@Query("select DISTINCT(s.room.cinema.id),s.date from Showing s where s.movie.id = ?1")
 	List<Object[]> findCinemaListAndDateByMovieId(String movieId);
+	
+	@Query("select s.id from Showing s where s.room.cinema.id = ?1 AND s.date = ?2 AND s.movie.id = ?3")
+	List<String> findShowingIdListByCinemaIdAndDateAndMovieId(String cinemaId,String date,String movieId);
 }

@@ -30,6 +30,8 @@ public class Ticket implements Serializable {
 	
 	private Showing showing;
 	
+	private User user;
+	
 
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,21 +46,21 @@ public class Ticket implements Serializable {
 		this.id = id;
 	}
 	
-	@Column(name="ticket_seatCol")
+	@Column(name="ticket_seatColNum")
 	public Integer getSeatColNum() {
 		return seatColNum;
 	}
 	
-	public void setseatColNum(Integer seatColNum) {
+	public void setSeatColNum(Integer seatColNum) {
 		this.seatColNum = seatColNum;
 	}
 	
-	@Column(name="ticket_seatRow")
-	public Integer getseatRowNum() {
+	@Column(name="ticket_seatRowNum")
+	public Integer getSeatRowNum() {
 		return seatRowNum;
 	}
 	
-	public void setseatRowNum(Integer seatRowNum) {
+	public void setSeatRowNum(Integer seatRowNum) {
 		this.seatRowNum = seatRowNum;
 	}
 
@@ -71,7 +73,7 @@ public class Ticket implements Serializable {
 		this.isSold = isSold;
 	}
 
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "showing_id")
 	public Showing getShowing() {
 		return showing;
@@ -79,6 +81,16 @@ public class Ticket implements Serializable {
 
 	public void setShowing(Showing showing) {
 		this.showing = showing;
+	}
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

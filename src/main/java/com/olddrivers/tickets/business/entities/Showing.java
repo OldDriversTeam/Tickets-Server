@@ -46,16 +46,16 @@ public class Showing implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "showing_date")
 	public String getDate() {
 		return date;
 	}
 
-	@Column(name = "showing_date")
 	public void setDate(String date) {
 		this.date = date;
 	}
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="room_id")
 	public Room getRoom() {
 		return room;
@@ -83,7 +83,7 @@ public class Showing implements Serializable {
 		this.price = price;
 	}
 
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="movie_id")
 	public Movie getMovie() {
 		return movie;

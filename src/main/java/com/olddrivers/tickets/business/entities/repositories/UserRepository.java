@@ -5,10 +5,7 @@ import org.springframework.data.repository.*;
 
 public interface UserRepository extends CrudRepository<User, String> {
 	
+	public User findByPhone(String phone); 
 	public User findByName(String name);
 	public User findByPhoneAndPassword(String phone, String password);
-	
-	
-	// make phone and email unique
-	public User findByPhone(String phone);
 }

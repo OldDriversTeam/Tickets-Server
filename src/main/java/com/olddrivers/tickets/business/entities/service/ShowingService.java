@@ -30,12 +30,18 @@ public class ShowingService {
 		Map<String, List<String>> dataMap = new LinkedHashMap<String, List<String>>();
 		List<Object[]> cinemaAndDateList = showingRepo.findCinemaListAndDateByMovieId(movieId);
 		for (int i = 0; i < cinemaAndDateList.size(); i++) {
-			dataMap.put((String)cinemaAndDateList.get(i)[1], new ArrayList<String>());
-		}
-		for (int i = 0; i < cinemaAndDateList.size(); i++) {
-			dataMap.get(cinemaAndDateList.get(i)[1]).add((String)cinemaAndDateList.get(i)[0]);
+			if(!dataMap.containsKey((String)cinemaAndDateList.get(i)[1])) {
+				List<String> cinemas = new ArrayList<String>();
+				cinemas.add((String)cinemaAndDateList.get(i)[0]);
+				dataMap.put((String)cinemaAndDateList.get(i)[1], cinemas);				
+			} else {
+				dataMap.get(cinemaAndDateList.get(i)[1]).add((String)cinemaAndDateList.get(i)[0]);
+			}
 		}
 		return dataMap;
-		
+	}
+	
+	public List<String> findShowingIdListByCinemaIdAndDateAndMovieId(final String cinemaId,final String date,final String movieId) {
+		return showingRepo.findShowingIdListByCinemaIdAndDateAndMovieId(cinemaId, date, movieId);
 	}
 }
