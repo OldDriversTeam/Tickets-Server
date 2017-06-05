@@ -48,12 +48,12 @@ public class TicketController {
 	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
 	@ResponseBody
 	public AbstractResponse findTicketsByUserId(@PathVariable("userId") String userId) {
-		List<Ticket> tickets = ticketService.findSoldTicketsByShowingId(userId);
+		List<Ticket> tickets = ticketService.findTicketsByUserId(userId);
 		List<String> ticketIdList = new ArrayList<String>();
 		for (Ticket t : tickets) {
 			ticketIdList.add(t.getId());
 		}
-		return new ObjectListResponse(ticketIdList,"seatSoldList");
+		return new ObjectListResponse(ticketIdList,"ticketIdsList");
 	}
 	
 	@RequestMapping(value = "/showing/{showingId}", method = RequestMethod.GET)

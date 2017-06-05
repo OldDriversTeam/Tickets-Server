@@ -51,17 +51,18 @@ public class Movie implements Serializable {
 	@GenericGenerator(name="system-uuid", strategy="org.hibernate.id.UUIDGenerator")
 	@Column(name = "movie_id")
 	public String getId() {
-		return this.id;
+		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
 	
 	
-	@Column(name = "moive_name")
+	@Column(name = "movie_name")
 	public String getName() {
-		return this.name;
+		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}

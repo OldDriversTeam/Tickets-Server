@@ -1,5 +1,7 @@
 package com.olddrivers.tickets.web.controllers;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +42,18 @@ public class MovieController {
 	@RequestMapping(value = "/onshow", method = RequestMethod.GET)
 	@ResponseBody
 	AbstractResponse FindOne() {
-		List<Object[]> list = movieService.findMovieOnShow(true);
-		return new ObjectListResponse(list, "movieList");
+		List<Object[]> movies = movieService.findMovieOnShow(true);
+		List<LinkedHashMap<String, Object>> movieOnShowList = new ArrayList<LinkedHashMap<String, Object>>();
+		for(Object[] o : movies) {
+			LinkedHashMap<String, Object> temp = new LinkedHashMap<String, Object>();
+			temp.put("id",String.valueOf(o[0]));
+			temp.put("name", String.valueOf(o[1]));
+			temp.put("avgScore", (Float)o[2]);
+			temp.put("poster",String.valueOf(o[3]));
+			movieOnShowList.add(temp);
+		}
+		
+		return new ObjectListResponse(movieOnShowList, "movieList");
 	}
 	
 }
