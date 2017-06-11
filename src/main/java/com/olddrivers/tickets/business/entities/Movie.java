@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -115,7 +116,8 @@ public class Movie implements Serializable {
 	}
 	
 	
-	@Column(name = "movie_avgScore")
+	@Column(name = "movie_avgScore", columnDefinition="decimal(2,1) default 0.0")
+	@DecimalMin("0.1")
 	public Float getAvgScore() {
 		return avgScore;
 	}

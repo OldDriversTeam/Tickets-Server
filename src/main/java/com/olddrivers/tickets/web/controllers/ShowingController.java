@@ -16,6 +16,7 @@ import com.olddrivers.tickets.business.entities.Room;
 import com.olddrivers.tickets.business.entities.Showing;
 import com.olddrivers.tickets.business.entities.service.RoomService;
 import com.olddrivers.tickets.business.entities.service.ShowingService;
+import com.olddrivers.tickets.util.DateUtil;
 import com.olddrivers.tickets.web.controllers.response.AbstractResponse;
 import com.olddrivers.tickets.web.controllers.response.ObjectListResponse;
 
@@ -47,13 +48,13 @@ public class ShowingController {
 	@RequestMapping(value = "/movie/{movieId}", method = RequestMethod.GET)
 	@ResponseBody
 	public AbstractResponse getShowingsByMovieId(@PathVariable("movieId") String movieId) {
-		Map<String, List<String>> dataMap = showingService.getShowingsByMovieId(movieId);
+		Map<String, List<Map<String, String>>> dataMap = showingService.getShowingsByMovieId(movieId,DateUtil.getTodayAndTomorrow());
+		
 		List<LinkedHashMap<String, Object>> dataList = new LinkedList<LinkedHashMap<String, Object>>();
-		for (Map.Entry<String, List<String>> entry : dataMap.entrySet()) {  
+		for (Map.Entry<String, List<Map<String, String>>> entry : dataMap.entrySet()) {  
 			LinkedHashMap<String, Object> temp = new LinkedHashMap<String, Object>();
-		    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());  
 			temp.put("date",entry.getKey().toString());
-			temp.put("cinemaIdList", entry.getValue());
+			temp.put("cinemaList", entry.getValue());
 			dataList.add(temp);
 		} 
 		return new ObjectListResponse(dataList, "showingList");

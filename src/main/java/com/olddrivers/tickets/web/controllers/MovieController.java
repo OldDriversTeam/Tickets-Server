@@ -50,6 +50,7 @@ public class MovieController {
 			temp.put("name", String.valueOf(o[1]));
 			temp.put("avgScore", (Float)o[2]);
 			temp.put("poster",String.valueOf(o[3]));
+			temp.put("storyLine",String.valueOf(o[4]));
 			movieOnShowList.add(temp);
 		}
 		

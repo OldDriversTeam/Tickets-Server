@@ -9,7 +9,7 @@ import org.springframework.data.repository.*;
 
 public interface MovieRepository extends CrudRepository<Movie, String> {
 	
-	@Query("select m.id, m.name, m.avgScore, m.poster from Movie m where m.isShow = ?1")
+	@Query("select m.id, m.name, m.avgScore, m.poster, m.storyLine from Movie m where m.isShow = ?1")
 	List<Object[]> findMovieOnShow(Boolean isShow);
 	
 }

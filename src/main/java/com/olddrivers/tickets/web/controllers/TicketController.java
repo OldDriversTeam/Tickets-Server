@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.olddrivers.tickets.business.entities.Showing;
@@ -17,6 +17,7 @@ import com.olddrivers.tickets.business.entities.User;
 import com.olddrivers.tickets.business.entities.service.ShowingService;
 import com.olddrivers.tickets.business.entities.service.TicketService;
 import com.olddrivers.tickets.business.entities.service.UserService;
+import com.olddrivers.tickets.util.OrderForm;
 import com.olddrivers.tickets.web.controllers.response.AbstractResponse;
 import com.olddrivers.tickets.web.controllers.response.ObjectListResponse;
 
@@ -70,22 +71,18 @@ public class TicketController {
 		return new ObjectListResponse(seatList,"seatSoldList");
 	}
 	
-	@RequestMapping(value = "/order", method = RequestMethod.GET)
+	@RequestMapping(value = "/order", method = RequestMethod.POST)
 	@ResponseBody
-	public AbstractResponse buyTickets(
-			@RequestParam("showingId") String showingId,
-	        @RequestParam("userId") String userId,
-	        @RequestParam("count") Integer count,
-	        @RequestParam("seats") Integer[][] seats) {
+	public AbstractResponse buyTickets(@RequestBody OrderForm orderForm) {
 		
 		List<String> ticketIds = new ArrayList<String>();
 		
-		User u1 = userService.findOne(userId);
-		Showing s1 = showingService.findOne(showingId);
-		for (int i = 0; i < count; i++) {
+		User u1 = userService.findOne(orderForm.getUserId());
+		Showing s1 = showingService.findOne(orderForm.getShowingId());
+		for (int i = 0; i < orderForm.getCount(); i++) {
 			Ticket temp = new Ticket();
-			temp.setSeatRowNum(seats[i][0]);
-			temp.setSeatColNum(seats[i][1]);
+			temp.setSeatRowNum(orderForm.getSeats()[i][0]);
+			temp.setSeatColNum(orderForm.getSeats()[i][1]);
 			temp.setIsSold(true);
 			temp.setShowing(s1);
 			temp.setUser(u1);

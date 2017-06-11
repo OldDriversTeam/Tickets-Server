@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.olddrivers.tickets.business.entities.User;
 import com.olddrivers.tickets.business.entities.service.UserService;
+import com.olddrivers.tickets.util.LoginForm;
+import com.olddrivers.tickets.util.RegistForm;
+import com.olddrivers.tickets.util.State;
 import com.olddrivers.tickets.web.controllers.response.AbstractResponse;
 
 @Controller
@@ -27,51 +29,51 @@ public class UserController {
 		return userService.findOne(id);
 	}
 
-	@RequestMapping(value = "/users/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	AbstractResponse login(
-	        @RequestParam("phone") String phone,
-	        @RequestParam("password") String password) {
+	AbstractResponse login(@RequestBody LoginForm loginForm) {
 		AbstractResponse res = new AbstractResponse();
-		User u1 = userService.findByPhone(phone);
+		User u1 = userService.findByPhone(loginForm.getPhone());
 		if(u1 == null) {
-			res.put("error","user not exists");
+			res.put("state", State.USER_NOT_EXISTS);
 			return res;
 		}
-		if(u1.getPassword().equals(password)) {
-			res.put("id", u1.getId());
+		if(u1.getPassword().equals(loginForm.getPassword())) {
+			res.put("state", State.SUCCEED);
+			res.put("id", u1);
 		} else {
-			res.put("error","wrong password");
-			return res;
+			res.put("state", State.WRONG_PASSWORD);
 		}
 		return res;
 	}
 	
-	@RequestMapping(value = "/users/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
-	AbstractResponse register(
-			@RequestParam("phone") String phone,
-	        @RequestParam("name") String name,
-	        @RequestParam("password") String password) {
+	AbstractResponse register(@RequestBody RegistForm registForm) {
 		AbstractResponse res = new AbstractResponse();
-		if(userService.findByPhone(phone) != null) {
-			res.put("error","user exists");
+		if(userService.findByPhone(registForm.getPhone()) != null) {
+			res.put("state",State.PHONE_EXISTED);
 			return res;
 		}
 		User u1 = new User();
-		u1.setPhone(phone);
-		u1.setName(name);
-		u1.setPassword(password);
-		res.put("id",userService.register(u1).getId());
+		u1.setPhone(registForm.getPhone());
+		u1.setName(registForm.getName());
+		u1.setPassword(registForm.getPassword());
+		res.put("state",State.SUCCEED);
+		res.put("user",userService.register(u1));
 		return res;
 	}
 
-	@RequestMapping(value = "/users/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
 	AbstractResponse Login(@RequestBody User user) {
 		AbstractResponse res = new AbstractResponse();
-		userService.update(user);
-		res.put("result", true);
+		if(userService.findOne(user.getId()) != null) {
+			userService.update(user);
+			res.put("state", State.SUCCEED);
+		} else {
+			res.put("state", State.FAILED);
+		}
 		return res;
 	}
 	

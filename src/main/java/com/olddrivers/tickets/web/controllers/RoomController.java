@@ -25,7 +25,7 @@ public class RoomController {
 		
 		AbstractResponse res = new AbstractResponse();
 		res.put("id", r1.getId());
-		res.put("name", r1.getType());
+		res.put("name", r1.getName());
 		res.put("col", r1.getCol());
 		res.put("row", r1.getRow());
 		res.put("cinemaId", r1.getCinema().getId());

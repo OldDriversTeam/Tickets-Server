@@ -1,6 +1,7 @@
 package com.olddrivers.tickets.business.entities.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,16 +27,22 @@ public class ShowingService {
 		return showingRepo.findOne(id);
 	}
 	
-	public Map<String, List<String>> getShowingsByMovieId(final String movieId) {
-		Map<String, List<String>> dataMap = new LinkedHashMap<String, List<String>>();
-		List<Object[]> cinemaAndDateList = showingRepo.findCinemaListAndDateByMovieId(movieId);
+	public Map<String, List<Map<String, String>>> getShowingsByMovieId(final String movieId, final List<String> dates) {
+		Map<String, List<Map<String, String>>> dataMap = new LinkedHashMap<String, List<Map<String, String>>>();
+		List<Object[]> cinemaAndDateList = showingRepo.findCinemaListAndDateByMovieId(movieId,dates);
 		for (int i = 0; i < cinemaAndDateList.size(); i++) {
 			if(!dataMap.containsKey((String)cinemaAndDateList.get(i)[1])) {
-				List<String> cinemas = new ArrayList<String>();
-				cinemas.add((String)cinemaAndDateList.get(i)[0]);
-				dataMap.put((String)cinemaAndDateList.get(i)[1], cinemas);				
+				List<Map<String, String>> cinemas = new ArrayList<Map<String, String>>();
+				Map<String, String> temp = new HashMap<String, String>();
+				temp.put("id", (String)cinemaAndDateList.get(i)[0]);
+				temp.put("name",(String)cinemaAndDateList.get(i)[2]);
+				cinemas.add(temp);
+				dataMap.put((String)cinemaAndDateList.get(i)[1],cinemas);
 			} else {
-				dataMap.get(cinemaAndDateList.get(i)[1]).add((String)cinemaAndDateList.get(i)[0]);
+				Map<String, String> temp = new HashMap<String, String>();
+				temp.put("id", (String)cinemaAndDateList.get(i)[0]);
+				temp.put("name",(String)cinemaAndDateList.get(i)[2]);
+				dataMap.get(cinemaAndDateList.get(i)[1]).add(temp);
 			}
 		}
 		return dataMap;

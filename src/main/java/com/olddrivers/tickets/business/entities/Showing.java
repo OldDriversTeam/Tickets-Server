@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -74,7 +75,8 @@ public class Showing implements Serializable {
 		this.time = time;
 	}
 	
-	@Column(name="showing_price")
+	@Column(name="showing_price", columnDefinition="decimal(5,2)")
+	@DecimalMin("0.01")
 	public Float getPrice() {
 		return price;
 	}

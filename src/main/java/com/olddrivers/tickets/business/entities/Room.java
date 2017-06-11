@@ -21,7 +21,7 @@ public class Room implements Serializable {
 	
 	private String id;
 	
-	private String type;
+	private String name;
 	
 	private Integer col;
 	
@@ -41,13 +41,13 @@ public class Room implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "room_type")
-	public String getType() {
-		return type;
+	@Column(name = "room_name")
+	public String getName() {
+		return name;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Column(name = "room_col")
