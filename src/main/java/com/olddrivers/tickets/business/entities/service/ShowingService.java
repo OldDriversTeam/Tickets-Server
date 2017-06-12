@@ -48,7 +48,18 @@ public class ShowingService {
 		return dataMap;
 	}
 	
-	public List<String> findShowingIdListByCinemaIdAndDateAndMovieId(final String cinemaId,final String date,final String movieId) {
-		return showingRepo.findShowingIdListByCinemaIdAndDateAndMovieId(cinemaId, date, movieId);
+	public List<Map<String, Object>> findShowingIdListByCinemaIdAndDateAndMovieId(final String cinemaId,final String date,final String movieId) {
+		List<Map<String, Object>> showings = new ArrayList<Map<String, Object>>();
+		List<Object[]> result = showingRepo.findShowingIdListByCinemaIdAndDateAndMovieId(cinemaId, date, movieId);
+		for(Object [] data : result) {
+			Map<String, Object> temp = new HashMap<String, Object>();
+			temp.put("showingId", String.valueOf(data[0]));
+			temp.put("time", String.valueOf(data[1]));
+			temp.put("price", (Float)data[2]);
+			temp.put("roomId", String.valueOf(data[3]));
+			temp.put("roomName", String.valueOf(data[4]));
+			showings.add(temp);
+		}
+		return showings;
 	}
 }

@@ -66,6 +66,6 @@ public class ShowingController {
 			@PathVariable("date") String date,
 			@PathVariable("movieId") String movieId) {
 		
-		return new ObjectListResponse(showingService.findShowingIdListByCinemaIdAndDateAndMovieId(cinemaId, date, movieId), "showingIdList");
+		return new ObjectListResponse(showingService.findShowingIdListByCinemaIdAndDateAndMovieId(cinemaId, date, movieId), "showingList");
 	}
 }

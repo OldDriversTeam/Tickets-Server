@@ -40,7 +40,7 @@ public class UserController {
 		}
 		if(u1.getPassword().equals(loginForm.getPassword())) {
 			res.put("state", State.SUCCEED);
-			res.put("id", u1);
+			res.put("user", u1);
 		} else {
 			res.put("state", State.WRONG_PASSWORD);
 		}
