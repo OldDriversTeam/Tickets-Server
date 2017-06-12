@@ -1,7 +1,9 @@
 package com.olddrivers.tickets.web.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,11 +52,23 @@ public class TicketController {
 	@ResponseBody
 	public AbstractResponse findTicketsByUserId(@PathVariable("userId") String userId) {
 		List<Ticket> tickets = ticketService.findTicketsByUserId(userId);
-		List<String> ticketIdList = new ArrayList<String>();
+		
+		List<Map<String,Object>> ticketList = new ArrayList<Map<String,Object>>();
 		for (Ticket t : tickets) {
-			ticketIdList.add(t.getId());
+			Map<String, Object> temp = new HashMap<String, Object>();
+			temp.put("showingId", t.getShowing().getId());
+			temp.put("movieName", t.getShowing().getMovie().getName());
+			temp.put("moviePoster", t.getShowing().getMovie().getPoster());
+			temp.put("movieType", t.getShowing().getMovie().getMovieType().getName());
+			temp.put("cinemaName", t.getShowing().getRoom().getCinema().getName());
+			temp.put("roomName", t.getShowing().getRoom().getName());
+			temp.put("seatColNum", t.getSeatColNum());
+			temp.put("seatRowNum", t.getSeatRowNum());
+			temp.put("date", t.getShowing().getDate());
+			temp.put("time", t.getShowing().getTime());
+			ticketList.add(temp);
 		}
-		return new ObjectListResponse(ticketIdList,"ticketIdsList");
+		return new ObjectListResponse(ticketList,"ticketList");
 	}
 	
 	@RequestMapping(value = "/showing/{showingId}", method = RequestMethod.GET)
