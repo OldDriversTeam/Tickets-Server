@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.olddrivers.tickets.business.entities.Showing;
 import com.olddrivers.tickets.business.entities.Ticket;
 import com.olddrivers.tickets.business.entities.User;
-import com.olddrivers.tickets.business.entities.service.ShowingService;
-import com.olddrivers.tickets.business.entities.service.TicketService;
-import com.olddrivers.tickets.business.entities.service.UserService;
+import com.olddrivers.tickets.business.services.ShowingService;
+import com.olddrivers.tickets.business.services.TicketService;
+import com.olddrivers.tickets.business.services.UserService;
 import com.olddrivers.tickets.util.OrderForm;
 import com.olddrivers.tickets.web.controllers.response.AbstractResponse;
 import com.olddrivers.tickets.web.controllers.response.ObjectListResponse;
@@ -78,8 +78,8 @@ public class TicketController {
 		List<Integer[]> seatList = new ArrayList<Integer[]>();
 		for (Ticket t : tickets) {
 			Integer[] seat = new Integer[2];
-			seat[0] = t.getSeatColNum();
-			seat[1] = t.getSeatRowNum();
+			seat[0] = t.getSeatRowNum();
+			seat[1] = t.getSeatColNum();
 			seatList.add(seat);
 		}
 		return new ObjectListResponse(seatList,"seatSoldList");

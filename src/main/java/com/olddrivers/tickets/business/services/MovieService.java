@@ -1,4 +1,4 @@
-package com.olddrivers.tickets.business.entities.service;
+package com.olddrivers.tickets.business.services;
 
 
 import java.util.List;
@@ -25,7 +25,11 @@ public class MovieService {
 		return movieRepo.findOne(id);
 	}
 	
-	public List<Object[]> findMovieOnShow(Boolean isShow) {
-		return movieRepo.findMovieOnShow(isShow);
+	public List<Object[]> findMovieOnShowWithDetail(Boolean isShow) {
+		return movieRepo.findMovieOnShowWithDetail(isShow);
+	}
+	
+	public List<Object[]> findMovieOnShowWithoutDetail(Boolean isShow) {
+		return movieRepo.findMovieOnShowWithoutDetail(isShow);
 	}
 }

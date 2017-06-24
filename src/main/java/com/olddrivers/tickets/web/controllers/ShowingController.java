@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.olddrivers.tickets.business.entities.Room;
 import com.olddrivers.tickets.business.entities.Showing;
-import com.olddrivers.tickets.business.entities.service.RoomService;
-import com.olddrivers.tickets.business.entities.service.ShowingService;
+import com.olddrivers.tickets.business.services.RoomService;
+import com.olddrivers.tickets.business.services.ShowingService;
 import com.olddrivers.tickets.util.DateUtil;
 import com.olddrivers.tickets.web.controllers.response.AbstractResponse;
 import com.olddrivers.tickets.web.controllers.response.ObjectListResponse;

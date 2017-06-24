@@ -73,7 +73,7 @@ public class Ticket implements Serializable {
 		this.isSold = isSold;
 	}
 
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "showing_id")
 	public Showing getShowing() {
 		return showing;
@@ -83,7 +83,7 @@ public class Ticket implements Serializable {
 		this.showing = showing;
 	}
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	public User getUser() {
 		return user;

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.olddrivers.tickets.business.entities.Room;
-import com.olddrivers.tickets.business.entities.service.RoomService;
+import com.olddrivers.tickets.business.services.RoomService;
 import com.olddrivers.tickets.web.controllers.response.AbstractResponse;
 
 @Controller

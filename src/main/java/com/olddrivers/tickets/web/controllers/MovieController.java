@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.olddrivers.tickets.business.entities.Movie;
-import com.olddrivers.tickets.business.entities.service.MovieService;
+import com.olddrivers.tickets.business.services.MovieService;
 import com.olddrivers.tickets.web.controllers.response.AbstractResponse;
 import com.olddrivers.tickets.web.controllers.response.ObjectListResponse;
 
@@ -41,8 +41,8 @@ public class MovieController {
 	
 	@RequestMapping(value = "/onshow", method = RequestMethod.GET)
 	@ResponseBody
-	AbstractResponse FindOne() {
-		List<Object[]> movies = movieService.findMovieOnShow(true);
+	AbstractResponse FindOnShowMovieWithDetail() {
+		List<Object[]> movies = movieService.findMovieOnShowWithDetail(true);
 		List<LinkedHashMap<String, Object>> movieOnShowList = new ArrayList<LinkedHashMap<String, Object>>();
 		for(Object[] o : movies) {
 			LinkedHashMap<String, Object> temp = new LinkedHashMap<String, Object>();
@@ -51,6 +51,21 @@ public class MovieController {
 			temp.put("avgScore", (Float)o[2]);
 			temp.put("poster",String.valueOf(o[3]));
 			temp.put("storyLine",String.valueOf(o[4]));
+			movieOnShowList.add(temp);
+		}
+		
+		return new ObjectListResponse(movieOnShowList, "movieList");
+	}
+	
+	@RequestMapping(value = "/cover", method = RequestMethod.GET)
+	@ResponseBody
+	AbstractResponse FindOnShowMovieWithoutDetail() {
+		List<Object[]> movies = movieService.findMovieOnShowWithoutDetail(true);
+		List<LinkedHashMap<String, Object>> movieOnShowList = new ArrayList<LinkedHashMap<String, Object>>();
+		for(Object[] o : movies) {
+			LinkedHashMap<String, Object> temp = new LinkedHashMap<String, Object>();
+			temp.put("id",String.valueOf(o[0]));
+			temp.put("cover", String.valueOf(o[1]));
 			movieOnShowList.add(temp);
 		}
 		

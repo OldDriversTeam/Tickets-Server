@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.olddrivers.tickets.business.entities.Cinema;
-import com.olddrivers.tickets.business.entities.service.CinemaService;
+import com.olddrivers.tickets.business.services.CinemaService;
 import com.olddrivers.tickets.web.controllers.response.AbstractResponse;
 
 @Controller
@@ -24,8 +24,8 @@ public class CinemaController {
 		AbstractResponse res = new AbstractResponse();
 		res.put("id", c1.getId());
 		res.put("name",c1.getName());
-		res.put("address",c1.getName());
-		res.put("phone",c1.getName());
+		res.put("address",c1.getAddress());
+		res.put("phone",c1.getPhone());
 		res.put("cityName",c1.getCity().getName());
 		return res;
 	}

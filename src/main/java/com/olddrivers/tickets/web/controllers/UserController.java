@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.olddrivers.tickets.business.entities.User;
-import com.olddrivers.tickets.business.entities.service.UserService;
+import com.olddrivers.tickets.business.services.UserService;
 import com.olddrivers.tickets.util.LoginForm;
 import com.olddrivers.tickets.util.RegistForm;
 import com.olddrivers.tickets.util.State;

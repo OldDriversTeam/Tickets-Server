@@ -40,6 +40,8 @@ public class Movie implements Serializable {
 	
 	private MovieType movieType;
 	
+	private String cover;
+	
 	public Movie() {
 		super();
 		
@@ -135,6 +137,16 @@ public class Movie implements Serializable {
 
 	public void setMovieType(MovieType movieType) {
 		this.movieType = movieType;
+	}
+
+	@Column(name = "movie_cover")
+	public String getCover() {
+		return cover;
+	}
+
+
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 }

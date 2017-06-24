@@ -1,4 +1,4 @@
-package com.olddrivers.tickets.business.entities.service;
+package com.olddrivers.tickets.business.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
